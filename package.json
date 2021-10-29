@@ -1,12 +1,12 @@
 {
   "name": "team-profile-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "commandline application to create profiles for each member in a team",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
+  "author": "Rua Manukau",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.2.0"
