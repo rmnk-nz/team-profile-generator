@@ -9,25 +9,10 @@ const Intern = require('./lib/Intern');
 const generateHtml = require('./src/generateHtml');
 const teamMembers = [];
 
-function createTeam() {
+function startTeamProfile() {
+    console.log('Create Team Profile')
     inquirer
     .prompt([
-        {
-            type: 'input',
-            name: 'team',
-            message: 'Team Generator! Please enter team name',
-        }
-    ])
-    .then((response) => {
-        const teamName = response.team;
-        teamMembers.push(teamName);
-        addManager();
-    })
-}
-
-function addManager() {
-    inquirer
-    .prompt ([
         {
             type: 'input',
             name: 'name',
@@ -49,32 +34,11 @@ function addManager() {
             message: 'Enter office number for team manager',
         },
     ])
-    .then((managerInput) => {
-            const {name, id, email, officeNum} = managerInput;
-            const manager = new Manager(name, id, email, officeNum);
-            teamMembers.push(manager);
-            addTeamMember();
-        });
-};
-
-function addTeamMember() {
-    inquirer
-    .prompt([
-        {
-            type: 'list',
-            name: 'role',
-            message: 'Add team members',
-            choices: ['Engineer', 'Intern', 'No more team members to add'],
-        }   
-    ])
-    .then((response) => {
-        if (response.role === 'Engineer') {
-            return addEngineer();
-        } else if (response.role === 'Intern') {
-            return addIntern();
-        } else {
-            return generateHtml();
-        }
+    .then ((managerInput) => {
+        const { name, id, email, officeNum } = managerInput;
+        const manager = new Manager(name, id, email, officeNum);
+        teamMembers.push(manager);
+        addTeamMember();
     });
 };
 
@@ -140,6 +104,44 @@ function addIntern() {
         teamMembers.push(intern);
         addTeamMember();
     });
-}
+};
 
-createTeam();
+const writeToFile = (data) => {
+    fs.writeFile('./dist/index.html', data, (err) => 
+    err
+    ?console.log(err)
+    : console.log('Team profile has been created! please open ./dist/index.html to view page')
+    );
+};
+
+function addTeamMember() {
+    inquirer
+    .prompt([
+        {
+            type: 'list',
+            name: 'role',
+            message: 'Add team members',
+            choices: ['Engineer', 'Intern', 'No more team members to add'],
+        }
+    ])
+    .then ((response) => {
+        if (response.role === 'Engineer') {
+            addEngineer();
+        } else if (response.role === 'Intern') {
+            addIntern();
+        } else {
+            return teamMembers;
+        }
+    })
+    .then ((teamMembers) => {
+        return generateHtml(teamMembers);
+    })
+    .then ((newHtml) => {
+        return writeToFile(newHtml);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+};
+
+startTeamProfile()
