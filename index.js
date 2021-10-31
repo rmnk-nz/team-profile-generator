@@ -130,18 +130,13 @@ function addTeamMember() {
         } else if (response.role === 'Intern') {
             addIntern();
         } else {
-            return teamMembers;
-        }
+            const initTeam = generateHtml(teamMembers);
+            return writeToFile(initTeam);
+        };
     })
-    .then ((teamMembers) => {
-        return generateHtml(teamMembers);
-    })
-    .then ((newHtml) => {
-        return writeToFile(newHtml);
-    })
-    .catch((err) => {
+    .catch ((err) => {
         console.log(err);
     })
-};
+}
 
-startTeamProfile()
+startTeamProfile();
