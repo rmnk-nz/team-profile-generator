@@ -20,6 +20,7 @@
 
   ## Test
   Run node index.js in command line and answer all prompts.
+  link to test video: https://watch.screencastify.com/v/tDPk2wkSMW9GDdvTYm1w
 
   ## License
   This application is covered by ![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg) license.
