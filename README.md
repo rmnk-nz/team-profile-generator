@@ -16,11 +16,11 @@
   Application will prompt user to input details of team manager, engineer and intern. Information requested will be name, email, id number, office number (manager only), github user name (engineer only) and schooling (intern only).
 
   ## Contributing
-  Git pull request and contact via email if you wish to contribute to application
+  Git pull request and contact via email if you wish to contribute to application.
 
   ## Test
-  Run node index.js in command line and answer all prompts.
-  link to test video: https://watch.screencastify.com/v/tDPk2wkSMW9GDdvTYm1w
+  Run node index.js in command line and answer all prompts.</br>
+  Link to test video: https://watch.screencastify.com/v/tDPk2wkSMW9GDdvTYm1w
 
   ## License
   This application is covered by ![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg) license.
